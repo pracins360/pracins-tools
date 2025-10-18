@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PracIns – DS360 Mini‑Apps Hub</title>
+  <meta name="description" content="PracIns hub with pizza order and clean WhatsApp forms, plus ready links for trials."/>
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--text:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--line:rgba(255,255,255,.12);--ring:rgba(34,197,94,.35)}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;display:grid;place-items:start center;padding:24px}
+    .wrap{width:min(980px,94vw)}
+    .brand{font-weight:800;font-size:24px;letter-spacing:.2px}
+    .sub{color:var(--muted);margin-top:4px}
+    .grid{display:grid;gap:14px;margin-top:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 4px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    a.btn{display:inline-block;margin-top:10px;border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--text);text-decoration:none}
+    a.btn.primary{background:linear-gradient(180deg,var(--accent),#10b981);color:#031e12;border-color:transparent;font-weight:800}
+    .section{margin-top:22px}
+    .footer{margin:18px 0;color:var(--muted);font-size:12px;text-align:center}
+    .kbd{font-family:ui-monospace,Menlo,Monaco,Consolas,monospace;background:#0b1224;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <div class="brand">PracIns — DS360 Mini‑Apps Hub</div>
+      <div class="sub">Share these links. Each page is front‑end only and opens WhatsApp with a drafted message.</div>
+    </div>
+
+    <div class="section">
+      <div class="grid">
+        <div class="card">
+          <h3>🍕 Pizza Order</h3>
+          <p>Weekday pizza orders (1 pizza = 8 slices). Name + qty + day + note → WhatsApp.</p>
+          <a class="btn primary" href="./pizza-order.html">Open Pizza Order</a>
+        </div>
+        <div class="card">
+          <h3>✨ Clean WhatsApp Form</h3>
+          <p>Generic form for any purpose. Title + Notice + optional message.</p>
+          <a class="btn" href="./quick-whatsapp-form-pracins.html">Open Clean Form</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🌍 Trial Links (ready to share)</h3>
+      <p class="sub">These use the clean form with title/notice overrides. All send to Purcy's WhatsApp by default (change via <span class="kbd">&phone=</span>).</p>
+      <div class="grid">
+        <!-- Water / Education / Shopping / Services -->
+        <div class="card"><h3>💧 Watermeter</h3><p>Send meter readings fast</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Watermeter&notice=Send%20today%E2%80%99s%20reading%20with%20address%20or%20meter%20ID.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>📚 EDU – Group 8</h3><p>Parent/teacher quick messages</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=EDU%20Group%208&notice=Class%20updates%2C%20permission%20notes%2C%20absences.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🧬 EDU – Biology</h3><p>Questions or lab help</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=EDU%20Biology&notice=Ask%20a%20bio%20question%20or%20share%20your%20assignment%20link.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>➗ EDU – Math</h3><p>Homework help or tips</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=EDU%20Math&notice=Share%20the%20problem%20and%20what%20you%E2%80%99ve%20tried%20so%20far.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🧪 EDU – NaSk</h3><p>Nature & technology support</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=EDU%20NaSk&notice=Short%20question%20or%20experiment%20help%20(share%20docs%20via%20link).&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🛍️ Shopping – Punda</h3><p>Street promo participation</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Shopping%20Punda&notice=Join%20the%20Punda%20shopping%20promo%20%E2%80%94%2020%20days%20pilot.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🛒 Shopping – Sambil</h3><p>Mall campaign contact</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Shopping%20Sambil&notice=Sign%20up%20your%20store%20for%20the%20Sambil%20pilot.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🍔 Food & Drink</h3><p>General F&amp;B inquiries</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Food%20and%20Drink&notice=Quick%20menu%2C%20catering%2C%20or%20reservation%20requests.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🍕 Pizza</h3><p>Shortcut to pizza form</p><a class="btn" href="./pizza-order.html">Link</a></div>
+        <div class="card"><h3>🚗 Rent‑a‑Car</h3><p>Booking lead form</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Rent‑a‑Car&notice=Dates%2C%20pickup%20location%2C%20car%20type%2C%20and%20license%20info.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- South Africa 1–4 -->
+        <div class="card"><h3>🇿🇦 Trial – South Africa 1</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20South%20Africa%201&notice=We%E2%80%99re%20testing%20a%20quick%20WhatsApp%20tool%20%E2%80%94%2020%20days%20pilot.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇿🇦 Trial – South Africa 2</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20South%20Africa%202&notice=Join%20our%2020‑day%20pilot%20%E2%80%94%20fast%20WhatsApp%20responses.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇿🇦 Trial – South Africa 3</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20South%20Africa%203&notice=Test%20customer%20reach%20with%20no%20backend%20%E2%80%94%20free.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇿🇦 Trial – South Africa 4</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20South%20Africa%204&notice=One‑page%20lead%20engine%20%E2%80%94%20keep%20if%20it%20works.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- USA 1–4 -->
+        <div class="card"><h3>🇺🇸 Trial – USA 1</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20USA%201&notice=Fast%20WhatsApp%20lead%20tool%20%E2%80%94%2020%20days.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇺🇸 Trial – USA 2</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20USA%202&notice=Prove%20value%20first%20%E2%80%94%20then%20expand%20with%20DS360.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇺🇸 Trial – USA 3</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20USA%203&notice=Simple%20tool%2C%20real%20results.%20Try%20it.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇺🇸 Trial – USA 4</h3><p>Generic outreach link</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20USA%204&notice=Keep%20it%20if%20it%20works%20%E2%80%94%20no%20risk.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- Trabzon 1–3 -->
+        <div class="card"><h3>🇹🇷 Trial – Trabzon 1</h3><p>Tourism test</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Trabzon%201&notice=Tourism%20leads%20pilot%20%E2%80%94%20restaurants%2C%20tours%2C%20rentals.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇹🇷 Trial – Trabzon 2</h3><p>Tourism test</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Trabzon%202&notice=Two%20partners%20for%2020%20days%20%E2%80%94%20free%20setup.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇹🇷 Trial – Trabzon 3</h3><p>Tourism test</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Trabzon%203&notice=Try%20WhatsApp-first%20leads%20%E2%80%94%20keep%20if%20it%20works.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- Romania 1–2 -->
+        <div class="card"><h3>🇷🇴 Trial – Romania 1</h3><p>Retail pilot</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Romania%201&notice=Local%20retail%20promo%20%E2%80%94%20WhatsApp%20first%20contacts.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇷🇴 Trial – Romania 2</h3><p>Retail pilot</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Romania%202&notice=Join%20with%202%20stores%20for%20a%2020‑day%20pilot.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- Madeira 1–2 -->
+        <div class="card"><h3>🇵🇹 Trial – Madeira 1</h3><p>Island model</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Madeira%201&notice=Island%20shops%20pilot%20%E2%80%94%20test%20traffic%20via%20WhatsApp.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇵🇹 Trial – Madeira 2</h3><p>Island model</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Madeira%202&notice=Two%20partners%20for%20two%20weeks%20%E2%80%94%20free%20setup.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- Crete 1–2 -->
+        <div class="card"><h3>🇬🇷 Trial – Crete 1</h3><p>Tourist belt</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Crete%201&notice=Hospitality%20pilot%20%E2%80%94%20test%20customer%20response.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇬🇷 Trial – Crete 2</h3><p>Tourist belt</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Crete%202&notice=Collect%20leads%20by%20WhatsApp%20%E2%80%94%20upgrade%20later.&org=PracIns&phone=59995120536">Link</a></div>
+
+        <!-- Martinique 1–2 -->
+        <div class="card"><h3>🇲🇶 Trial – Martinique 1</h3><p>French Caribbean</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Martinique%201&notice=Island%20pilot%20%E2%80%94%20test%20street%20shopping%20flow.&org=PracIns&phone=59995120536">Link</a></div>
+        <div class="card"><h3>🇲🇶 Trial – Martinique 2</h3><p>French Caribbean</p><a class="btn" href="./quick-whatsapp-form-pracins.html?title=Trial%20Martinique%202&notice=Two%20shops%2C%2020%20days%2C%20keep%20if%20it%20works.&org=PracIns&phone=59995120536">Link</a></div>
+      </div>
+    </div>
+
+    <div class="footer">PracIns — Practical Instructions · <a href="mailto:contact@pracins.com" style="color:inherit">contact@pracins.com</a></div>
+  </div>
+</body>
+</html>

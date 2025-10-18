@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizza Order (Mon–Fri) · WhatsApp</title>
+  <meta name="description" content="Weekday pizza order form: name, qty, day, note → WhatsApp." />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --text:#ffffff; --muted:#cbd5e1; --accent:#22c55e; --ring:rgba(34,197,94,.35); --line:rgba(255,255,255,.12) }
+    html,body{height:100%}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);margin:0;display:grid;place-items:start center;padding:24px}
+    .container{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(720px,94vw);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    h1{font-size:22px;margin:0 0 6px 0}
+    .sub{color:var(--muted);margin:0 0 12px 0}
+    .announce{margin:10px 0 16px 0;padding:12px 14px;border-radius:12px;border:1px dashed var(--line);background:#0b1224}
+    label{display:block;font-weight:700;margin-top:16px;margin-bottom:8px}
+    input,select,textarea,button{width:100%;border-radius:12px;border:1px solid var(--line)}
+    input,select,textarea{background:#0b1224;color:var(--text);padding:16px;line-height:1.8}
+    textarea{min-height:110px;resize:vertical}
+    button{appearance:none;background:linear-gradient(180deg,var(--accent),#10b981);color:#062915;font-weight:800;padding:16px 18px;margin-top:18px;border:none;cursor:pointer}
+    button:focus,input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 6px var(--ring)}
+    .hint{color:var(--muted);font-size:12px;margin-top:6px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🍕 Fast Pizza Order (Mon–Fri)</h1>
+    <p class="sub">1 pizza = 8 slices.</p>
+    <div class="announce" id="announceView">📣 ALV pizza special. Delivery 10:30 (make group of 4 if you want)</div>
+
+    <form id="orderForm">
+      <div>
+        <label for="name">Your name</label>
+        <input id="name" required placeholder="e.g. Maria Jansen" />
+      </div>
+
+      <div>
+        <label for="qty">Amount pizza(s)</label>
+        <select id="qty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <div class="hint">Approx. slices: 8 per pizza.</div>
+      </div>
+
+      <div>
+        <label for="day">Pick a day</label>
+        <select id="day">
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="note">Any note for your order? (optional)</label>
+        <textarea id="note" placeholder="e.g. Make it extra crunchy; no cheese; deliver to Science Lab at 10:45"></textarea>
+      </div>
+
+      <button type="submit">Send via WhatsApp</button>
+      <div class="hint">After tapping, WhatsApp opens with your order. Review and press Send.</div>
+    </form>
+  </div>
+
+  <script>
+    const ORGANIZER_NAME = 'Purcy';
+    const PHONE_DEFAULT = '59995120536';
+    const ANNOUNCEMENT_DEFAULT = 'ALV pizza special. Delivery 10:30 (make group of 4 if you want)';
+    const TITLE_DEFAULT = '🍕 Fast Pizza Order (Mon–Fri)';
+
+    const params = new URLSearchParams(location.search);
+    const ANNOUNCEMENT = params.get('ann') ? decodeURIComponent(params.get('ann')) : ANNOUNCEMENT_DEFAULT;
+    const PHONE = params.get('phone') || PHONE_DEFAULT;
+    const ORGANIZER = params.get('org') || ORGANIZER_NAME;
+    const TITLE = params.get('title') || TITLE_DEFAULT;
+
+    document.title = 'Pizza Order (Mon–Fri) · WhatsApp';
+    document.querySelector('h1').textContent = TITLE;
+    document.getElementById('announceView').textContent = '📣 ' + ANNOUNCEMENT;
+
+    const form = document.getElementById('orderForm');
+    const nameEl = document.getElementById('name');
+    const qtyEl = document.getElementById('qty');
+    const dayEl = document.getElementById('day');
+    const noteEl = document.getElementById('note');
+
+    try { const saved = localStorage.getItem('pizza_name'); if (saved) nameEl.value = saved; } catch {}
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameVal = nameEl.value.trim();
+      const qty = parseInt(qtyEl.value, 10) || 1;
+      const day = dayEl.value;
+      const note = noteEl.value.trim();
+      if (!nameVal) { alert('Please enter your name.'); return; }
+
+      try { localStorage.setItem('pizza_name', nameVal); } catch {}
+
+      const approxSlices = qty * 8;
+      const lines = [
+        '🧾 PIZZA ORDER',
+        `Organizer: ${ORGANIZER} (+${PHONE})`,
+        `📣 ${ANNOUNCEMENT}`,
+        `Name: ${nameVal}`,
+        `Qty: ${qty} pizza(s) (~${approxSlices} slices)`,
+        `Day: ${day}`,
+        note ? `📝 ${note}` : null,
+        '',
+        '— Sent from the Weekday Pizza Order form'
+      ].filter(Boolean);
+
+      const link = `https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join('\n'))}`;
+      window.location.href = link;
+    });
+  </script>
+</body>
+</html>

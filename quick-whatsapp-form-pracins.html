@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PracIns – Quick WhatsApp Form</title>
+  <meta name="description" content="Clean, branded WhatsApp form by PracIns (Practical Instructions)." />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --text:#ffffff; --muted:#cbd5e1; --accent:#22c55e; --ring:rgba(34,197,94,.35); --line:rgba(255,255,255,.12) }
+    html,body{height:100%}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);margin:0;display:grid;place-items:start center;padding:24px}
+    .wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(720px,94vw);box-shadow:0 12px 40px rgba(0,0,0,0.35)}
+    h1{font-size:22px;margin:0 0 6px 0}
+    .sub{color:var(--muted);margin:0 0 12px 0}
+    .notice{margin:10px 0 18px 0;padding:12px 14px;border-radius:12px;border:1px dashed var(--line);background:#0b1224}
+    label{display:block;font-weight:700;margin-top:16px;margin-bottom:8px}
+    input,textarea,button{width:100%;border-radius:12px;border:1px solid var(--line)}
+    input,textarea{background:#0b1224;color:var(--text);padding:16px;line-height:1.8}
+    textarea{min-height:110px;resize:vertical}
+    button{appearance:none;background:linear-gradient(180deg,var(--accent),#10b981);color:#062915;font-weight:800;padding:16px 18px;margin-top:18px;border:none;cursor:pointer}
+    button:focus,input:focus,textarea:focus{outline:none;box-shadow:0 0 0 6px var(--ring)}
+    .hint{color:var(--muted);font-size:12px;margin-top:6px}
+    .footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);padding-top:12px}
+    .brand{font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 id="title">✨ Quick WhatsApp Form</h1>
+    <p class="sub" id="subtitle">Use the Notice to state the promo/purpose for this mini‑app.</p>
+
+    <div class="notice" id="notice">📣 Today’s Notice: describe the purpose or special here.</div>
+
+    <form id="form">
+      <div>
+        <label for="name">Your name</label>
+        <input id="name" required placeholder="e.g. Maria Jansen" />
+      </div>
+
+      <div>
+        <label for="note">Your message (optional)</label>
+        <textarea id="note" placeholder="e.g. I’m interested; please contact me."></textarea>
+        <div class="hint">Add any details (preferences, location, case summary, etc.).</div>
+      </div>
+
+      <button type="submit" id="ctaBtn">Send via WhatsApp</button>
+      <div class="hint">WhatsApp opens with your message. Review and press Send.</div>
+    </form>
+
+    <div class="footer">
+      <span class="brand">PracIns</span> — Practical Instructions ·
+      <a href="mailto:contact@pracins.com" style="color:inherit">contact@pracins.com</a>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULTS = {
+      organizer: 'PracIns',
+      phone: '59995120536',
+      title: '✨ Quick WhatsApp Form',
+      subtitle: 'Use the Notice to state the promo/purpose for this mini‑app.',
+      notice: "📣 Today’s Notice: describe the purpose or special here.",
+      cta: 'Send via WhatsApp',
+      header: '🧾 MESSAGE'
+    };
+
+    const p = new URLSearchParams(location.search);
+    const TITLE   = p.get('title')   || DEFAULTS.title;
+    const SUBTITLE= p.get('subtitle')|| DEFAULTS.subtitle;
+    const NOTICE  = p.get('notice')  || DEFAULTS.notice;
+    const PHONE   = p.get('phone')   || DEFAULTS.phone;
+    const ORG     = p.get('org')     || DEFAULTS.organizer;
+    const CTA     = p.get('cta')     || DEFAULTS.cta;
+    const HEADER  = p.get('header')  || DEFAULTS.header;
+
+    document.title = TITLE + ' · WhatsApp';
+    document.getElementById('title').textContent = TITLE;
+    document.getElementById('subtitle').textContent = SUBTITLE;
+    document.getElementById('notice').textContent = NOTICE;
+    document.getElementById('ctaBtn').textContent = CTA;
+
+    const form = document.getElementById('form');
+    const nameEl = document.getElementById('name');
+    const noteEl = document.getElementById('note');
+
+    try { const saved = localStorage.getItem('pracins_name'); if (saved) nameEl.value = saved; } catch {}
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = nameEl.value.trim();
+      const note = noteEl.value.trim();
+      if (!name) { alert('Please enter your name.'); return; }
+      try { localStorage.setItem('pracins_name', name); } catch {}
+
+      const lines = [
+        HEADER,
+        `Organizer: ${ORG} (+${PHONE})`,
+        NOTICE ? `📣 ${NOTICE}` : null,
+        `Name: ${name}`,
+        note ? `📝 ${note}` : null,
+        '',
+        '— Sent via PracIns Quick WhatsApp Form'
+      ].filter(Boolean);
+
+      const link = `https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join('\n'))}`;
+      window.location.href = link;
+    });
+  </script>
+</body>
+</html>
